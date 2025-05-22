@@ -15,7 +15,14 @@ This firmware consumes slightly more power when more than 1 key is used. The con
 - Copy your previously generated PREFIX_keyfile in the same folder 
 
 ```bash
+# ESP32-WROOM or similar
 esptool.py write_flash 0x1000  bootloader.bin \
+                0x8000  partitions.bin \
+                0x10000 firmware.bin \
+                0x110000 PREFIX_keyfile
+
+# ESP32-C3 - boatloader offset at 0x0
+esptool.py write_flash 0x0  bootloader.bin \
                 0x8000  partitions.bin \
                 0x10000 firmware.bin \
                 0x110000 PREFIX_keyfile
